@@ -1,9 +1,9 @@
-import { findByDisplayName, findByPrototypes } from "@cumcord/modules/webpack";
+import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 
 const MESSAGE_LINK_REGEX = /https?:\/\/(?:\w+\.)?tiktok?\.com\/.*/g;
 
 const Embed = findByDisplayName("Embed");
-const { renderThumbnail } = findByPrototypes("renderThumbnail");
+const { renderVideoComponent, renderImageComponent, renderMaskedLinkComponent} = findByProps("renderImageComponent");
 
 export default function TikTokPreviewAccessory(props) {
   const { message } = props;
@@ -34,6 +34,9 @@ export default function TikTokPreviewAccessory(props) {
             text: "Video URL is \n" + "https://tt-embed.com/video/"+ String(btoa(messageLinks).split('/')[0])
           },
         }}
+        renderImageComponent={renderImageComponent}
+        renderLinkComponent={renderMaskedLinkComponent}
+        renderVideoComponent={renderVideoComponent}
         //renderThumbnail={renderThumbnail}
       />
     );
