@@ -1,0 +1,7 @@
+{
+    "name": "CC-Tik",
+    "description": "Preview TikTok links",
+    "author": "WmeLuna",
+    "file": "plugin.jsx",
+    "license": "MIT"
+  }
