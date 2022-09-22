@@ -10,6 +10,9 @@ export default function TikTokPreviewAccessory(props) {
   const { message } = props;
   const messageLinks = message.content.match(MESSAGE_LINK_REGEX);
 
+  const [, dummyState] = React.useState();
+  const forceUpdate = React.useCallback(() => dummyState({}), []);
+
   if (messageLinks) {
     const elements = [];
     let embed = {
@@ -45,6 +48,7 @@ export default function TikTokPreviewAccessory(props) {
       console.log(res.body)
       tikjson = res.body
       embed.thumbnail.url= String(tikjson.thumbnail_url)
+      forceUpdate();
     })
      elements.push(
       <Embed
