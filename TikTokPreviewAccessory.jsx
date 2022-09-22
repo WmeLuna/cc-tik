@@ -12,7 +12,6 @@ export default function TikTokPreviewAccessory(props) {
 
   if (messageLinks) {
     const elements = [];
-    //https://www.tiktok.com/oembed?url=
     let tikjson;
     HTTP.get({
       url: "https://www.tiktok.com/oembed?url=" + messageLinks
