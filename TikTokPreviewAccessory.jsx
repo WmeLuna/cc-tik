@@ -4,6 +4,7 @@ const MESSAGE_LINK_REGEX = /https?:\/\/(?:\w+\.)?tiktok?\.com\/.*/g;
 
 const Embed = findByDisplayName("Embed");
 const { renderVideoComponent, renderImageComponent, renderMaskedLinkComponent,} = findByProps("renderImageComponent");
+const HTTP = findByProps("get", "put");
 
 export default function TikTokPreviewAccessory(props) {
   const { message } = props;
@@ -11,6 +12,13 @@ export default function TikTokPreviewAccessory(props) {
 
   if (messageLinks) {
     const elements = [];
+    //https://www.tiktok.com/oembed?url=
+    let tikjson;
+    HTTP.get({
+      url: "https://www.tiktok.com/oembed?url=" + messageLinks
+    }).then((res) => {
+      res = tikjson
+    })
     elements.push(
       <Embed
         embed={{
@@ -49,6 +57,7 @@ export default function TikTokPreviewAccessory(props) {
       />
     );
     console.log(elements[0].props);
+    console.log(tikjson)
     return elements;
   }
 

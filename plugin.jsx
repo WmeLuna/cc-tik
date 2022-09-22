@@ -14,7 +14,6 @@ export function onLoad() {
       ret.props.children.push(
         <TikTokPreviewAccessory message={this.props.message} />
       );
-      console.log(ret.props.children[9].props.message)
   });
 }
 
