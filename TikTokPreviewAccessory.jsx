@@ -17,8 +17,8 @@ export default function TikTokPreviewAccessory(props) {
     HTTP.get({
       url: "https://www.tiktok.com/oembed?url=" + messageLinks
     }).then((res) => {
-      console.log(res)
-      res = tikjson
+      console.log(res.body)
+      res.body = tikjson
     })
     elements.push(
       <Embed
