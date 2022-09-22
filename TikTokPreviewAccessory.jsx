@@ -6,14 +6,14 @@ const Embed = findByDisplayName("Embed");
 const { renderVideoComponent, renderImageComponent, renderMaskedLinkComponent,} = findByProps("renderImageComponent");
 const HTTP = findByProps("get", "put");
 
-export default async function TikTokPreviewAccessory(props) {
+export default function TikTokPreviewAccessory(props) {
   const { message } = props;
   const messageLinks = message.content.match(MESSAGE_LINK_REGEX);
 
   if (messageLinks) {
     const elements = [];
     let tikjson;
-    await HTTP.get({
+    HTTP.get({
       url: "https://www.tiktok.com/oembed?url=" + messageLinks
     }).then((res) => {
       console.log(res.body)
@@ -52,7 +52,7 @@ export default async function TikTokPreviewAccessory(props) {
         renderVideoComponent={renderVideoComponent}
         renderDescription={() => (
           <div>
-            <span>Test</span>
+            <span></span>
           </div>
         )}
       />
