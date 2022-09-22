@@ -39,7 +39,7 @@ export default function TikTokPreviewAccessory(props) {
       },
     };
     let tikjson;
-    (async () => {
+    async () => {
     await HTTP.get({
       url: "https://www.tiktok.com/oembed?url=" + messageLinks
     }).then((res) => {
@@ -60,7 +60,7 @@ export default function TikTokPreviewAccessory(props) {
         )}
       />
     );
-  })
+  }
 
     console.log(elements[0].props);
     return elements;
