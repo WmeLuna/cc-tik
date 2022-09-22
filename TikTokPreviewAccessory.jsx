@@ -12,6 +12,32 @@ export default function TikTokPreviewAccessory(props) {
 
   if (messageLinks) {
     const elements = [];
+    let embed = {
+      //type: "video",
+      rawDescription: "",
+      color: "#7401d3",
+      author: {
+        name: "TikTok Embed",
+      },
+      feilds: [],
+      thumbnail: {
+        //url: String(tikjson.thumbnail_url),
+        url: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/uvkuhyieh7lpqpbj/pwa/512x512.png",
+      },
+      video: {
+        height: 300,
+        width: 400,
+        proxyURL: "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0],
+        url: "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0],
+      },
+      url: "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0],
+      footer: {
+        text:
+          "Video URL is \n" +
+          "https://tt-embed.com/video/" +
+          String(btoa(messageLinks).split("/")[0]),
+      },
+    };
     let tikjson;
     HTTP.get({
       url: "https://www.tiktok.com/oembed?url=" + messageLinks
@@ -21,32 +47,7 @@ export default function TikTokPreviewAccessory(props) {
     })
     elements.push(
       <Embed
-        embed={{
-          //type: "video",
-          rawDescription: "",
-          color: "#7401d3",
-          author: {
-            name: "TikTok Embed",
-          },
-          feilds: [],
-          thumbnail: {
-            //url: String(tikjson.thumbnail_url),
-            url: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/uvkuhyieh7lpqpbj/pwa/512x512.png",
-          },
-          video: {
-            height: 300,
-            width: 400,
-            proxyURL: "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0],
-            url: "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0],
-          },
-          url: "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0],
-          footer: {
-            text:
-              "Video URL is \n" +
-              "https://tt-embed.com/video/" +
-              String(btoa(messageLinks).split("/")[0]),
-          },
-        }}
+        embed={embed}
         renderImageComponent={renderImageComponent}
         renderLinkComponent={renderMaskedLinkComponent}
         renderVideoComponent={renderVideoComponent}
