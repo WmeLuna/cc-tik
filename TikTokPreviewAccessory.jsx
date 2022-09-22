@@ -31,7 +31,7 @@ export default function TikTokPreviewAccessory(props) {
           },
           feilds: [],
           thumbnail: {
-            url: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/uvkuhyieh7lpqpbj/pwa/512x512.png",
+            url: tikjson.thumbnail_url,
           },
           video: {
             height: 300,
@@ -58,7 +58,6 @@ export default function TikTokPreviewAccessory(props) {
       />
     );
     console.log(elements[0].props);
-    console.log(tikjson)
     return elements;
   }
 
