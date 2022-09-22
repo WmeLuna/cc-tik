@@ -45,7 +45,7 @@ export default function TikTokPreviewAccessory(props) {
       console.log(res.body)
       tikjson = res.body
       embed.thumbnail.url= String(tikjson.thumbnail_url)
-    })
+
     elements.push(
       <Embed
         embed={embed}
@@ -59,6 +59,7 @@ export default function TikTokPreviewAccessory(props) {
         )}
       />
     );
+  })
     console.log(elements[0].props);
     return elements;
   }
