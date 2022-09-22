@@ -44,6 +44,7 @@ export default function TikTokPreviewAccessory(props) {
     }).then((res) => {
       console.log(res.body)
       tikjson = res.body
+      embed.thumbnail.url= String(tikjson.thumbnail_url)
     })
     elements.push(
       <Embed
