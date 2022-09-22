@@ -30,7 +30,7 @@ export default async function TikTokPreviewAccessory(props) {
           },
           feilds: [],
           thumbnail: {
-            url: tikjson.thumbnail_url,
+            url: String(tikjson.thumbnail_url),
           },
           video: {
             height: 300,
