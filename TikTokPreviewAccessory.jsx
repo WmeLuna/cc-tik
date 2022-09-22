@@ -1,4 +1,6 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
+import {constants as Constants} from "@cumcord/modules/common";
+import {React} from "@cumcord/modules/common";
 
 const MESSAGE_LINK_REGEX = /https?:\/\/(?:\w+\.)?tiktok?\.com\/.*/g;
 
