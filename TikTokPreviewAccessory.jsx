@@ -1,6 +1,5 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import {constants as Constants} from "@cumcord/modules/common";
-import {React} from "@cumcord/modules/common";
 
 const MESSAGE_LINK_REGEX = /https?:\/\/(?:\w+\.)?tiktok?\.com\/.*/g;
 
@@ -12,8 +11,6 @@ export default function TikTokPreviewAccessory(props) {
   const { message } = props;
   const messageLinks = message.content.match(MESSAGE_LINK_REGEX);
 
-  const [, dummyState] = React.useState();
-  const forceUpdate = React.useCallback(() => dummyState({}), []);
 
   if (messageLinks) {
     const elements = [];
@@ -50,7 +47,6 @@ export default function TikTokPreviewAccessory(props) {
       console.log(res.body)
       tikjson = res.body
       embed.thumbnail.url= String(tikjson.thumbnail_url)
-      forceUpdate();
     })
      elements.push(
       <Embed
