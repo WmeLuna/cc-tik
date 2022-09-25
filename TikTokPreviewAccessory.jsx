@@ -1,6 +1,7 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
+import { React, ReactDOM } from "@cumcord/modules/common";
 import { constants as Constants } from "@cumcord/modules/common";
-import React, {useState, useEffect} from 'react';
+const {useState, useEffect} = React;
 
 import TikVideo from "./VideoPlayer";
 
