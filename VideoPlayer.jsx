@@ -21,12 +21,25 @@ export default function TikVideo(props) {
       return;
     setProgress((e.target.currentTime / e.target.duration) * 100);
   };
-
+  let anim = null; 
+  let pos = 0;
   const onPlay = () => {
     pauseRef.current.style.visibility = "hidden"
   }
   const onPause = () => {
     pauseRef.current.style.visibility = "visible"
+    clearInterval(anim);
+    anim = setInterval(frame, 5);
+    function frame() {
+      if (pos == 25) {
+        clearInterval(anim);
+        pauseRef.current.style.opacity = ""
+        pos = 0
+      } else {
+        pos++; 
+        pauseRef.current.style.opacity = pos * 4 + "%" 
+      }
+    }
   }
 
   let videosrc1 = "https://tt-embed.com/video/" + btoa(url).split("/")[0];
