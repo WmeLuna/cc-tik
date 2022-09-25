@@ -1,6 +1,8 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { constants as Constants } from "@cumcord/modules/common";
 
+import TikVideo from "./VideoPlayer";
+
 const MESSAGE_LINK_REGEX = /https?:\/\/(?:\w+\.)?tiktok?\.com\/.*/g;
 
 const Embed = findByDisplayName("Embed");
@@ -16,6 +18,7 @@ export default function TikTokPreviewAccessory(props) {
       color: "#7401d3",
       author: {
         name: "TikTok Embed",
+        iconProxyURL: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/uvkuhyieh7lpqpbj/pwa/512x512.png"
       },
       feilds: [],
       url: "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0],
@@ -24,23 +27,15 @@ export default function TikTokPreviewAccessory(props) {
         },
     };
 
-    let videosrc1 = "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0]
-    let videosrc2 = String(messageLinks).replace("tiktok","fftiktok")
     elements.push(
       <Embed
         embed={embed}
         renderDescription={() => (
-          <div>
-            <video controls class="CC-Video" width="100%" height="400">
-              <source src={videosrc1}></source>
-              <source src={videosrc2}></source>
-            </video>
-          </div>
+          <TikVideo url={messageLinks}></TikVideo>
         )}
       />
     );
 
-    console.log(elements[0].props);
     return elements;
   }
 
