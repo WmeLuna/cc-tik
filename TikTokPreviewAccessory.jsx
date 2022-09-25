@@ -17,6 +17,7 @@ export default function TikTokPreviewAccessory(props) {
     let [author, setAuthor] = useState("Tiktok")
     let [authorPFP, setAuthorPFP] = useState("https://sf16-sg.tiktokcdn.com/obj/eden-sg/uvkuhyieh7lpqpbj/pwa/512x512.png")
     let [footer, setFooter] = useState("")
+    let [loaded, setLoaded] = useState(false)
     let embed = {
       rawDescription: "",
       color: "#7401d3",
@@ -29,16 +30,20 @@ export default function TikTokPreviewAccessory(props) {
       },
       footer: {
         text: footer
-      }
+      },
     };
     useEffect(() => {
+      if (!loaded) {
       fetch("https://www.tikwm.com/api/?url=" + messageLinks)
       .then(data => data.json())
       .then(data => {
         setAuthor(data.data.author.nickname + " (@" +data.data.author.unique_id + ")");
         setAuthorPFP(data.data.author.avatar)
         setFooter(data.data.title)
+        setLoaded(true)
       })
+      console.log(loaded)
+    }
     })
 
     elements.push(
