@@ -11,6 +11,9 @@
   left: -100%;
 }
 
+.CC-VidWrap video {
+  background-color: black;
+}
 .CC-VidWrap .CC-Pause {
   position: absolute;
   top: 50%;

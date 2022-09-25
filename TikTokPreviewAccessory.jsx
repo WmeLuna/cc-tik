@@ -1,5 +1,6 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { constants as Constants } from "@cumcord/modules/common";
+import {useState, useEffect} from 'react';
 
 import TikVideo from "./VideoPlayer";
 
@@ -13,19 +14,32 @@ export default function TikTokPreviewAccessory(props) {
 
   if (messageLinks) {
     const elements = [];
+    let [author, setAuthor] = useState("Tiktok")
+    let [authorPFP, setAuthorPFP] = useState("https://sf16-sg.tiktokcdn.com/obj/eden-sg/uvkuhyieh7lpqpbj/pwa/512x512.png")
+    let [footer, setFooter] = useState("")
     let embed = {
       rawDescription: "",
       color: "#7401d3",
-      author: {
+      provider: {
         name: "TikTok Embed",
-        iconProxyURL: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/uvkuhyieh7lpqpbj/pwa/512x512.png"
       },
-      feilds: [],
-      url: "https://tt-embed.com/video/" + btoa(messageLinks).split("/")[0],
+      author: {
+        name: author,
+        iconProxyURL: authorPFP
+      },
       footer: {
-        text: ""
-        },
+        text: footer
+      }
     };
+    useEffect(() => {
+      fetch("https://www.tikwm.com/api/?url=" + messageLinks)
+      .then(data => data.json())
+      .then(data => {
+        setAuthor(data.data.author.nickname + " (@" +data.data.author.unique_id + ")");
+        setAuthorPFP(data.data.author.avatar)
+        setFooter(data.data.title)
+      })
+    })
 
     elements.push(
       <Embed

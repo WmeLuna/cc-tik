@@ -56,6 +56,7 @@ export default function TikVideo(props) {
         onPause={onPause}
         onClick={toggleVideo}
         class="CC-Video"
+        width="100%"
         height="400"
         ref={videoRef}
       >

@@ -10,10 +10,16 @@
     position: relative;
     top: -5px;
 }
-.CC-VidWrap .CC-Pause {
+.CC-VidWrap {
+
+video {
+    background-color: black;
+}
+.CC-Pause {
     position: absolute;
     top: 50%;
     left: 50%;
 
     transform: translate(-50%, -50%);
 } 
+}
