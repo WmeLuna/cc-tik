@@ -1,4 +1,4 @@
-import { React, ReactDOM } from "@cumcord/modules/common";
+import { React } from "@cumcord/modules/common";
 const { useRef, useState } = React;
 
 export default function TikVideo(props) {

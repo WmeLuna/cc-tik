@@ -1,13 +1,10 @@
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
-import { React, ReactDOM } from "@cumcord/modules/common";
-import { constants as Constants } from "@cumcord/modules/common";
-const {useState, useEffect} = React;
-
+import { findByDisplayName } from "@cumcord/modules/webpack";
+import { React } from "@cumcord/modules/common";
 import TikVideo from "./VideoPlayer";
+const {useState, useEffect} = React;
+const Embed = findByDisplayName("Embed");
 
 const MESSAGE_LINK_REGEX = /https?:\/\/(?:\w+\.)?tiktok?\.com\/.*/g;
-
-const Embed = findByDisplayName("Embed");
 
 export default function TikTokPreviewAccessory(props) {
   const { message } = props;
